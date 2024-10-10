@@ -52,14 +52,14 @@ echo = `date` job $JOB_NAME
 ```
 
 ### To Run the Job
-The user must provide two items to script for the job to run.
+The user must provide two items.
 
 1. SAMPLEDIR_MTCONTIG="path to assembled mt contigs. Must end in '.fasta'"
 
-After the '=' paste the full path to the directory with mitochondrial contigs in '.fasta' format. Leave the quotes.
+After the '=' paste the full path to the directory with mitochondrial contigs in '.fasta' format.
 
 2. SAMPLEDIR_BASE="path the base project directory. Directory where job file is"
 
-After the '=' paste the full path to base directory. This directory is where the job file is located.  Leave the quotes. The results will be located in this directory.
+After the '=' paste the full path to base directory. This directory is where the job file is located. The results will be located in this directory.
 
 After making the changes above, save the job file as 'mitos_loop.job' and submit it on hydra (qsub mitos_loop.job).
