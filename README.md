@@ -52,7 +52,7 @@ echo = `date` job $JOB_NAME
 ```
 
 ### To Run the Job
-The user must provide two items.
+The user must eddit two items in the job file above:
 
 1. SAMPLEDIR_MTCONTIG="path to assembled mt contigs. Must end in '.fasta'"
 
