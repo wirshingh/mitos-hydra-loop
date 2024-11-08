@@ -47,6 +47,25 @@ runmitos.py \
 --debug
 done
 #
+mkdir -p ${SAMPLEDIR_BASE}/mitos_renamed_results
+
+for GETSAMPLENAME in ${SAMPLEDIR_MTCONTIG}/*.fasta; do
+    SAMPLENAME=$(basename "$GETSAMPLENAME" .fasta)
+
+    mkdir -p mitos_renamed_results/${SAMPLENAME}
+
+    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.bed ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.bed
+    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.faa ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.faa
+    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.fas ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.fas
+    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.geneorder ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.geneorder
+    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.gff ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.gff
+    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*ignored.mitos ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}_ignored.mitos
+     cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*result.mitos ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}_result.mitos
+    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.png ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.png
+    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.seq ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.seq
+    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.dat ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.dat
+done
+echo "DONE. Final renamed MITOS results copied to 'mitos_renamed_results'"
 echo = `date` job $JOB_NAME
 
 ```
