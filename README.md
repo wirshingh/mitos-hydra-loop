@@ -2,7 +2,8 @@
 ### Summary
 This script will run MITOS on Hydra using assembled mitochondrial contigs in '.fasta' format.
 
-Results will be in a directory named 'mitos_All_results'. Within this directory results for each sample will be in its own directory with the sample ID and end in '_mitos_results'.
+The final results (with the most important files) will be copied and renamed to the directory named 'mitos_renamed_results'.
+All of the outputed results will be in a directory named 'mitos_All_results'. 
 
 To prepare the job file, see 'To Run the Job' below.
 ```
