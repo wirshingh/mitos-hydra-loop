@@ -11,7 +11,7 @@ To prepare the job file, see 'To Run the Job' below.
 #!/bin/sh
 # ----------------Parameters---------------------- #
 #$ -S /bin/sh
-#$ -q sThM.q
+#$ -q mThM.q
 #$ -l mres=48G,h_data=48G,h_vmem=48G,himem
 #$ -cwd
 #$ -j y
