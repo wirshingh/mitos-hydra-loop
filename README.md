@@ -48,25 +48,46 @@ runmitos.py \
 --debug
 done
 #
-mkdir -p ${SAMPLEDIR_BASE}/mitos_renamed_results
+#
+# PART2 - Copy and Rename Output files wth sample names
+#
+# Output directory
+OUTPUT_DIR="${SAMPLEDIR_BASE}/mitos_renamed_results"
+mkdir -p "$OUTPUT_DIR"
 
-for GETSAMPLENAME in ${SAMPLEDIR_MTCONTIG}/*.fasta; do
+# File extensions to process (excluding .dat)
+EXTENSIONS=("bed" "faa" "fas" "geneorder" "gff" "png" "seq")
+SPECIAL_EXTENSIONS=("ignored.mitos" "result.mitos")
+
+for GETSAMPLENAME in "$SAMPLEDIR_MTCONTIG"/*.fasta; do
     SAMPLENAME=$(basename "$GETSAMPLENAME" .fasta)
+    SAMPLE_OUT_DIR="${OUTPUT_DIR}/${SAMPLENAME}"
+    mkdir -p "$SAMPLE_OUT_DIR"
 
-    mkdir -p mitos_renamed_results/${SAMPLENAME}
+    SAMPLE_SRC_DIR="${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results"
 
-    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.bed ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.bed
-    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.faa ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.faa
-    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.fas ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.fas
-    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.geneorder ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.geneorder
-    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.gff ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.gff
-    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*ignored.mitos ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}_ignored.mitos
-     cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*result.mitos ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}_result.mitos
-    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.png ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.png
-    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.seq ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.seq
-    cp ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results/*.dat ${SAMPLEDIR_BASE}/mitos_renamed_results/${SAMPLENAME}/${SAMPLENAME}.dat
+    # Regular extensions (e.g., .bed, .faa, etc.)
+    for EXT in "${EXTENSIONS[@]}"; do
+        COUNT=1
+        find "$SAMPLE_SRC_DIR" -type f -name "*.${EXT}" | while read FILE; do
+            BASENAME="${SAMPLENAME}_contig${COUNT}.${EXT}"
+            cp "$FILE" "${SAMPLE_OUT_DIR}/${BASENAME}"
+            ((COUNT++))
+        done
+    done
+
+    # Special filenames like *ignored.mitos or *result.mitos
+    for EXT in "${SPECIAL_EXTENSIONS[@]}"; do
+        COUNT=1
+        find "$SAMPLE_SRC_DIR" -type f -name "*${EXT}" | while read FILE; do
+            BASENAME="${SAMPLENAME}_contig${COUNT}_${EXT}"
+            cp "$FILE" "${SAMPLE_OUT_DIR}/${BASENAME}"
+            ((COUNT++))
+        done
+    done
 done
-echo "DONE. Final renamed MITOS results copied to 'mitos_renamed_results'"
+
+echo "DONE. Final renamed MITOS results copied to '${OUTPUT_DIR}'"
 echo = `date` job $JOB_NAME
 
 ```
