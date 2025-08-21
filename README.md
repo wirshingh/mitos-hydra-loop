@@ -94,7 +94,7 @@ echo = `date` job $JOB_NAME
 ```
 
 ### To Run the Job
-The user must eddit two items in the job file above:
+The user must the following items in the job file above:
 
 1. SAMPLEDIR_MTCONTIG="path to assembled mt contigs. Must end in '.fasta'"
 
@@ -103,5 +103,48 @@ After the '=' paste the full path to the directory with mitochondrial contigs in
 2. SAMPLEDIR_BASE="path the base project directory. Directory where job file is"
 
 After the '=' paste the full path to base directory. This directory is where the job file is located. The results will be located in this directory.
+
+3. Genetic Code
+
+After the mitos command flag -c enter the number of the genetic code that will be used for annotation. 5 (Invertebrate Mitochondrial) is set as default.
+
+Genetic codes:
+
+1 The Standard Code 
+
+2 The Vertebrate Mitochondrial Code 
+
+3 The Yeast Mitochondrial Code 
+
+4 The Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code
+
+5 The Invertebrate Mitochondrial Code
+
+6 The Ciliate, Dasycladacean and Hexamita Nuclear Code 
+
+9 The Echinoderm and Flatworm Mitochondrial Code 
+
+10 The Euplotid Nuclear Code 
+
+11 The Bacterial, Archaeal and Plant Plastid Code 
+
+12 The Alternative Yeast Nuclear Code 
+
+13 The Ascidian Mitochondrial Code 
+
+14 The Alternative Flatworm Mitochondrial Code 
+
+16 Chlorophycean Mitochondrial Code 
+
+21 Trematode Mitochondrial Code 
+
+22 Scenedesmus obliquus Mitochondrial Code 
+
+23 Thraustochytrium Mitochondrial Code 
+
+24 Pterobranchia Mitochondrial Code 
+
+25 Candidate Division SR1 and Gracilibacteria Code
+
 
 After making the changes above, save the job file as 'mitos_loop.job' and submit it on hydra (qsub mitos_loop.job).
