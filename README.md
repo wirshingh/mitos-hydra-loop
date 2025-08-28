@@ -29,7 +29,7 @@ echo + NSLOTS = $NSLOTS
 mkdir -p mitos_All_results
 
 # Set path to directory with assembled mitochondrial contigs
-SAMPLEDIR_MTCONTIG="path to assembled mt contigs. Must end in '.fasta'"
+SAMPLEDIR_MTCONTIG="path to assembled mt contigs. Must end in .fasta"
 
 # Set path to base project directory
 SAMPLEDIR_BASE="path the base project directory. Directory where job file is"
