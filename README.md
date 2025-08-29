@@ -2,8 +2,11 @@
 ### Summary
 This script will run MITOS on Hydra using assembled mitochondrial contigs in '.fasta' format.
 
-All results will be in a directory named 'mitos_All_results'. 
-The most important files will be copied and renamed with sample names to the directory 'mitos_renamed_results'.
+All of the results will be in a directory named 'mitos_All_results'. 
+
+All useful files for downstream analyses (e.g., sequences and annotations) will be copied and renamed with sample names to the directory 'mitos_renamed_results'.
+
+All final genes for each sample will copied to the directory 'mitos_Final_Genes'.
 
 
 To prepare the job file, see 'To Run the Job' below.
@@ -123,15 +126,15 @@ The user must the following items in the job file above:
 
 1. SAMPLEDIR_MTCONTIG="path to assembled mt contigs. Must end in '.fasta'"
 
-After the '=' paste the full path to the directory with mitochondrial contigs in '.fasta' format.
+    After the '=' paste the full path to the directory with mitochondrial contigs in '.fasta' format.
 
-2. SAMPLEDIR_BASE="path the base project directory. Directory where job file is"
+2. SAMPLEDIR_BASE="path the base project directory. Output files will be here"
 
-After the '=' paste the full path to base directory. This directory is where the job file is located. The results will be located in this directory.
+    After the '=' paste the full path to base directory.
 
 3. Genetic Code
 
-After the mitos command flag -c enter the number of the genetic code that will be used for annotation. 5 (Invertebrate Mitochondrial) is set as default.
+    After the mitos command flag -c enter the number of the genetic code that will be used for annotation. 5 (Invertebrate Mitochondrial) is set as default.
 
 Genetic codes:
 
