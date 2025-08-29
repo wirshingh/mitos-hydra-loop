@@ -8,7 +8,6 @@ The most important files will be copied and renamed with sample names to the dir
 
 To prepare the job file, see 'To Run the Job' below.
 ```
-
 #!/bin/sh
 # ----------------Parameters---------------------- #
 #$ -S /bin/sh
@@ -29,10 +28,10 @@ echo + NSLOTS = $NSLOTS
 mkdir -p mitos_All_results
 
 # Set path to directory with assembled mitochondrial contigs
-SAMPLEDIR_MTCONTIG="path to assembled mt contigs. Must end in .fasta"
+SAMPLEDIR_MTCONTIG="full path to assembled mt contigs. Must end in .fasta"
 
 # Set path to base project directory
-SAMPLEDIR_BASE="path the base project directory. Directory where job file is"
+SAMPLEDIR_BASE="full path the base project directory. Output files will be here"
 #
 for GETSAMPLENAME in ${SAMPLEDIR_MTCONTIG}/*.fasta
 do
@@ -88,7 +87,33 @@ for GETSAMPLENAME in "$SAMPLEDIR_MTCONTIG"/*.fasta; do
     done
 done
 
-echo "DONE. Final renamed MITOS results copied to '${OUTPUT_DIR}'"
+echo "PART 2 DONE. Final renamed MITOS results copied to 'mitos_renamed_results'"
+
+# PART3 - Copy all of the final genes into a single .fasta file for each sample
+
+mkdir -p mitos_Final_Genes
+
+# Loop through all contig1.fas files to get sample names
+for GETSAMPLENAME in ./mitos_renamed_results/*contig*/*contig1.fas
+do
+    # Extract sample name by removing _contig1.fas
+    SAMPLENAME=$(basename "$GETSAMPLENAME" _contig1.fas)
+
+    # Define the output file for the sample
+    OUTPUT_FILE=./mitos_Final_Genes/${SAMPLENAME}_mitos_Final_Genes.fasta
+
+    # Empty the output file in case it already exists
+    > "$OUTPUT_FILE"
+
+    # Concatenate all .fas files for that sample into the output
+    for FASFILE in ./mitos_renamed_results/*contig*/${SAMPLENAME}*.fas
+    do
+        cat "$FASFILE" >> "$OUTPUT_FILE"
+    done
+done
+
+echo "PART 3 DONE. Final genes for each sample copied to 'mitos_Final_Genes'"
+
 echo = `date` job $JOB_NAME
 
 ```
