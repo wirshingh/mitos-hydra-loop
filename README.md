@@ -97,7 +97,9 @@ echo "PART 2 DONE. Final renamed MITOS results copied to 'mitos_renamed_results'
 
 # PART3 - Copy all of the final genes into a single .fasta file for each sample
 
-mkdir -p mitos_Final_Genes
+# Output directory
+OUTPUT_DIR="${SAMPLEDIR_BASE}/mitos_Final_Genes"
+mkdir -p "$OUTPUT_DIR"
 
 # Loop through all contig1.fas files to get sample names
 for GETSAMPLENAME in ./mitos_renamed_results/*contig*/*contig1.fas
