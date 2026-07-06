@@ -102,19 +102,19 @@ OUTPUT_DIR="${SAMPLEDIR_BASE}/mitos_Final_Genes"
 mkdir -p "$OUTPUT_DIR"
 
 # Loop through all contig1.fas files to get sample names
-for GETSAMPLENAME in ./mitos_renamed_results/*contig*/*contig1.fas
+for GETSAMPLENAME in ${SAMPLEDIR_BASE}/mitos_renamed_results/*contig*/*contig1.fas
 do
     # Extract sample name by removing _contig1.fas
     SAMPLENAME=$(basename "$GETSAMPLENAME" _contig1.fas)
 
     # Define the output file for the sample
-    OUTPUT_FILE=./mitos_Final_Genes/${SAMPLENAME}_mitos_Final_Genes.fasta
+    OUTPUT_FILE=${SAMPLEDIR_BASE}/mitos_Final_Genes/${SAMPLENAME}_mitos_Final_Genes.fasta
 
     # Empty the output file in case it already exists
     > "$OUTPUT_FILE"
 
     # Concatenate all .fas files for that sample into the output
-    for FASFILE in ./mitos_renamed_results/*contig*/${SAMPLENAME}*.fas
+    for FASFILE in ${SAMPLEDIR_BASE}/mitos_renamed_results/*contig*/${SAMPLENAME}*.fas
     do
         cat "$FASFILE" >> "$OUTPUT_FILE"
     done
