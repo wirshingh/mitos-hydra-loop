@@ -28,13 +28,16 @@ module load bio/mitos
 echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
 echo + NSLOTS = $NSLOTS
 #
-mkdir -p mitos_All_results
 
 # Set path to directory with assembled mitochondrial contigs
 SAMPLEDIR_MTCONTIG="full path to assembled mt contigs. Must end in .fasta"
 
-# Set path to base project directory
+# Set path to base project directory. This is where the results will be
 SAMPLEDIR_BASE="full path the base project directory. Output files will be here"
+
+# Create directory for results
+mkdir -p ${SAMPLEDIR_BASE}/mitos_All_results
+
 #
 for GETSAMPLENAME in ${SAMPLEDIR_MTCONTIG}/*.fasta
 do
