@@ -133,7 +133,7 @@ The user must the following items in the job file above:
 
     After the '=' paste the full path to the directory with mitochondrial contigs in '.fasta' format.
 
-2. SAMPLEDIR_BASE="path the base project directory. Output files will be here"
+2. SAMPLEDIR_BASE="path the base project directory. This is where the results will go."
 
     After the '=' paste the full path to base directory.
 
