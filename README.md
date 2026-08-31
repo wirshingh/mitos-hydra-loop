@@ -137,7 +137,8 @@ echo = `date` job $JOB_NAME
 ```
 
 ### To Run the Job
-The user must the following items in the job file above:
+The user must the following items in the job file above.
+Under "CONFIGURATION" add the following paths:
 
 1. SAMPLEDIR_MTCONTIG="path to assembled mt contigs. Must end in '.fasta'"
 
