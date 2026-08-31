@@ -137,8 +137,7 @@ echo = `date` job $JOB_NAME
 ```
 
 ### To Run the Job
-The user must the following items in the job file above.
-Under "CONFIGURATION" add the following paths:
+Under "CONFIGURATION" in the job file add the following paths:
 
 1. SAMPLEDIR_MTCONTIG="path to assembled mt contigs. Must end in '.fasta'"
 
@@ -146,7 +145,7 @@ Under "CONFIGURATION" add the following paths:
 
 2. SAMPLEDIR_BASE="path the base project directory. This is where the results will go."
 
-    After the '=' paste the full path to base directory.
+    After the '=' paste the full path to base directory where the results will be copied.
 
 3. Genetic Code
 
