@@ -29,15 +29,24 @@ echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
 echo + NSLOTS = $NSLOTS
 #
 
+#============================================================================
+# CONFIGURATION
+#============================================================================
 # Set path to directory with assembled mitochondrial contigs
 SAMPLEDIR_MTCONTIG="full path to assembled mt contigs. Must end in .fasta"
 
 # Set path to base project directory. This is where the results will go
 SAMPLEDIR_BASE="full path to base project directory"
 
-# Create directory for results
+#============================================================================
+# CREATE DIRECTORY FOR RESULTS
+#============================================================================
+#
 mkdir -p ${SAMPLEDIR_BASE}/mitos_All_results
-
+#
+#============================================================================
+# PART 1 - RUN MITOS IN A LOOP
+#============================================================================
 #
 for GETSAMPLENAME in ${SAMPLEDIR_MTCONTIG}/*.fasta
 do
@@ -54,9 +63,9 @@ runmitos.py \
 --debug
 done
 #
-#
-# PART2 - Copy and Rename Output files wth sample names
-#
+#============================================================================
+# PART 2 - COPY AND RENAME OUTPUT FILES WITH SAMPLE NAMES
+#============================================================================
 # Output directory
 OUTPUT_DIR="${SAMPLEDIR_BASE}/mitos_renamed_results"
 mkdir -p "$OUTPUT_DIR"
@@ -95,8 +104,9 @@ done
 
 echo "PART 2 DONE. Final renamed MITOS results copied to 'mitos_renamed_results'"
 
-# PART3 - Copy all of the final genes into a single .fasta file for each sample
-
+#============================================================================
+# PART 3 - COPY ALL FINAL GENES INTO A SINGLE .FASTA FILE FOR EACH SAMPLE
+#============================================================================
 # Output directory
 OUTPUT_DIR="${SAMPLEDIR_BASE}/mitos_Final_Genes"
 mkdir -p "$OUTPUT_DIR"
