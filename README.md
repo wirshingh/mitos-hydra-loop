@@ -59,7 +59,7 @@ SAMPLENAME=$(basename "$GETSAMPLENAME" .fasta)
 mkdir -p ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results
 #
 runmitos.py \
--i "${SAMPLEDIR_MTCONTIG}/${SAMPLENAME}*.fasta" \
+-i "${SAMPLEDIR_MTCONTIG}/${SAMPLENAME}"*.fasta \
 -c "${GENCODE}" \
 -o "${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results" \
 -r "/scratch/nmnh_lab/macdonaldk/ref/refseq89m" \
