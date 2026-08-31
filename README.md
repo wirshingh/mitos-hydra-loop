@@ -32,6 +32,7 @@ echo + NSLOTS = $NSLOTS
 #============================================================================
 # CONFIGURATION
 #============================================================================
+
 # Set path to directory with assembled mitochondrial contigs
 SAMPLEDIR_MTCONTIG="full path to assembled mt contigs. Must end in .fasta"
 
@@ -44,17 +45,17 @@ GENCODE="5"
 #============================================================================
 # CREATE DIRECTORY FOR RESULTS
 #============================================================================
-#
+
 mkdir -p ${SAMPLEDIR_BASE}/mitos_All_results
-#
+
 #============================================================================
 # PART 1 - RUN MITOS IN A LOOP
 #============================================================================
-#
+
 for GETSAMPLENAME in ${SAMPLEDIR_MTCONTIG}/*.fasta
 do
 SAMPLENAME=$(basename "$GETSAMPLENAME" .fasta)
-#
+
 mkdir -p ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results
 #
 runmitos.py \
