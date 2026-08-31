@@ -38,6 +38,9 @@ SAMPLEDIR_MTCONTIG="full path to assembled mt contigs. Must end in .fasta"
 # Set path to base project directory. This is where the results will go
 SAMPLEDIR_BASE="full path to base project directory"
 
+#Enter digit for Genetic Code. The default is set to 5 (Invertebrate Mitochondrial)
+GENCODE="5"
+
 #============================================================================
 # CREATE DIRECTORY FOR RESULTS
 #============================================================================
@@ -56,7 +59,7 @@ mkdir -p ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results
 #
 runmitos.py \
 -i ${SAMPLEDIR_MTCONTIG}/${SAMPLENAME}*.fasta \
--c 5 \
+-c ${GENCODE} \
 -o ${SAMPLEDIR_BASE}/mitos_All_results/${SAMPLENAME}_mitos_results \
 -r /scratch/nmnh_lab/macdonaldk/ref/refseq89m \
 -R /scratch/nmnh_lab/macdonaldk/ref/refseq89m \
@@ -137,7 +140,7 @@ echo = `date` job $JOB_NAME
 ```
 
 ### To Run the Job
-Under "CONFIGURATION" in the job file add the following paths:
+Under "CONFIGURATION" in the job file add the following:
 
 1. SAMPLEDIR_MTCONTIG="path to assembled mt contigs. Must end in '.fasta'"
 
@@ -149,7 +152,10 @@ Under "CONFIGURATION" in the job file add the following paths:
 
 3. Genetic Code
 
-    After the mitos command flag -c enter the number of the genetic code that will be used for annotation. 5 (Invertebrate Mitochondrial) is set as default.
+    GENCODE="Enter numberical digit"
+
+   Enter the number of the genetic code that will be used for annotation (see list below).
+    The number 5 (Invertebrate Mitochondrial) is set as default.
 
 Genetic codes:
 
